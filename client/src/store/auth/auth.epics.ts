@@ -27,7 +27,7 @@ const epicLogin = (action$: any) =>
     ofType<ReturnType<typeof login>>(LOGIN),
     mergeMap((action: any) =>
       ajax({
-        url: `${BASE_URL}/api/login`,
+        url: `${BASE_URL}/api/auth/login`,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const epicRegister = (action$: any) =>
     ofType<ReturnType<typeof register>>(REGISTER),
     mergeMap(({ payload }) =>
       ajax({
-        url: `${BASE_URL}/api/register`,
+        url: `${BASE_URL}/api/auth/register`,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,9 +79,11 @@ const epicRegister = (action$: any) =>
           password: payload.password,
           repeatedPassword: payload.password2,
         },
+        
       }).pipe(
         mergeMap((response) => {
           const responseData = response["response"];
+          console.log(responseData)
 
           return [
             registerSuccess(responseData["token"]),
@@ -91,7 +93,7 @@ const epicRegister = (action$: any) =>
         }),
         catchError((error) => {
           const responseData = error["response"];
-          console.log(responseData);
+          // console.log(responseData);
 
           return [registerFail()];
         //   return [registerFail(), getErrors(responseData["message"])];
@@ -106,7 +108,7 @@ const epicUserLoading = (action$: any) =>
     ofType<ReturnType<typeof userLoading>>(USER_LOADING),
     mergeMap(({ payload }) =>
       ajax({
-        url: `${BASE_URL}/api/user/loading`,
+        url: `${BASE_URL}/api/auth/user/loading`,
         method: "GET",
         headers: {
           "Content-Type": "application/json",

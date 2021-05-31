@@ -1,6 +1,6 @@
 {
     "port": 5000,
     "jwtSecter": "123",
-    "mongoUri": "mongodb+srv://eduard:eduard@cluster0.o9l6j.azure.mongodb.net/<dbname>?retryWrites=true&w=majority"
+    "mongoUri": "mongodb+srv://eduard:eduard@cluster0.ikpsy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
   }
   

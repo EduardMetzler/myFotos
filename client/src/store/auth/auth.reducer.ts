@@ -63,6 +63,7 @@ export default (
     case AUTH_ERROR:
     case LOGOUT_SUCCESS:
       localStorage.removeItem("token");
+ 
       return {
         ...state,
         token: "",

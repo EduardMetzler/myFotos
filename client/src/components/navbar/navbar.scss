@@ -13,6 +13,12 @@
   }
 }
 
+.contentSite {
+  &[sidenav-is-open="true"] {
+    display: none;
+  }
+}
+
 .item {
   padding: 0.7rem;
   font-weight: 500;
