@@ -13,26 +13,25 @@ interface OwnProps {}
 interface ConnectedState {
   isAuthenticated: boolean;
   isLoading: boolean;
-//   error: String;
+  //   error: String;
 }
 
 const mapStateToProps = (state: AppState) => ({
   isAuthenticated: state.auth.isAuthenticated,
   isLoading: state.auth.isLoading,
-//   error: state.error.message,
+  //   error: state.error.message,
 });
 
 const LoginComponent: React.FunctionComponent<ConnectedState & OwnProps> = ({
   isLoading,
-  isAuthenticated
-//   error,
+  isAuthenticated,
+  //   error,
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
   const history = useHistory();
-
 
   const handleSubmit = (event: any) => {
     dispatch(login(email, password));
@@ -50,12 +49,8 @@ const LoginComponent: React.FunctionComponent<ConnectedState & OwnProps> = ({
   //   if(isAuthenticated){
   //     history.push("dashboard");
 
-   
-    
   //   }
   //   },[isAuthenticated]);
-
-
 
   return (
     <div className="row login-container">
