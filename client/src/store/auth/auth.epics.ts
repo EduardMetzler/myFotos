@@ -11,13 +11,11 @@ import {
   LOGIN,
   loginSuccess,
   userLoaded,
-  USER_LOADED,
   registerFail,
   USER_LOADING,
   userLoading,
   authError,
   loginFail,
-  MY_NEW_TEST,
 } from "./auth.actions";
 // import { getErrors, clearErrors } from "../error/error.actions";
 export const BASE_URL = "http://localhost:5000";

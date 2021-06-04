@@ -30,7 +30,7 @@ app.use(express.static("images"))
 mongoose.set("useFindAndModify", false);
 
 app.use("/api/auth", require("./routes/auth.routes"));
-// app.use("/api/image", require("./routes/image.routes"));
+app.use("/api/userData", require("./routes/userData.routes"));
 
 
 
@@ -68,9 +68,14 @@ app.post("/single",upload.single(`image`),(req,res)=>{
 ////////////////
 app.post("/multiple",upload.array(`images`,3),(req,res)=>{
   console.log(req.files)
-  res.send("Multiple File succes")
+  res.status(201).json({file:req.files[0].filename});
+  // res.send({file:req.files.filename})
 })
 
+// app.post("/multiple",(req,res)=>{
+//   console.log(req.body)
+//   res.send("Multiple File succes")
+// })
 
 
 
