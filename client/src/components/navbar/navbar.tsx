@@ -11,6 +11,7 @@ import { LoginPage } from "../../page/Login.page";
 import { logoutSuccess, userLoading } from "../../store/auth/auth.actions";
 import { DashboardPage } from "../../page/Dashboard.page";
 import { ErrorComponent } from "../error/error";
+import { AllFotosPage } from "../../page/AllFotos.page";
 
 interface ConnectedState {
   isAuthenticated: boolean;
@@ -51,9 +52,11 @@ const NavbarComponent: React.FunctionComponent<ConnectedState> = ({
     }
   }, [width]);
 
-  if (token && !isAuthenticated) {
-    dispatch(userLoading(token));
-  }
+  useEffect(() => {
+    if (token) {
+      dispatch(userLoading(token));
+    }
+  }, []);
 
   return (
     <>
@@ -128,6 +131,9 @@ const NavbarComponent: React.FunctionComponent<ConnectedState> = ({
             <Switch>
               <Route path="/dashboard" exact>
                 <DashboardPage />
+              </Route>
+              <Route path="/allFotos" exact>
+                <AllFotosPage />
               </Route>
 
               {/* <Redirect to="/dashboard" /> */}

@@ -6,6 +6,8 @@ const schema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   admin: { type: Boolean, required: true },
+  allFotosIdListe: { type: Types.ObjectId, ref: "UserData" } 
+  
 
 });
 

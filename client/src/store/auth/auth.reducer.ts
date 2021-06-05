@@ -22,6 +22,7 @@ const INITIAL_STATE = {
   firstName: "",
   lastName: "",
   admin: false,
+  allFotosIdListe:"nan"
 };
 
 export default (
@@ -36,6 +37,7 @@ export default (
 
     case USER_LOADED:
       const userDaten = action as ReturnType<typeof userLoaded>;
+      console.log(state)
 
       return {
         ...state,
@@ -44,6 +46,7 @@ export default (
         firstName: userDaten.payload.firstName,
         lastName: userDaten.payload.lastName,
         admin: userDaten.payload.admin,
+        allFotosIdListe:userDaten.payload.allFotosIdListe
       
       };
     case LOGIN_SUCCESS:

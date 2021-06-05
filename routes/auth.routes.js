@@ -4,6 +4,8 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const User = require("../models/User");
+const UserData = require("../models/UserData");
+
 
 const auth = require("../middleware/auth.middleware");
 
@@ -22,7 +24,7 @@ router.post(
   ],
 
   async (req, res) => {
-      console.log(req)
+      // console.log(req)
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -60,6 +62,8 @@ router.post(
         firstName,
         lastName,
         admin: false,
+        allFotosIdListe:null
+   
      
       });
 
@@ -68,6 +72,36 @@ router.post(
       });
 
       await user.save();
+
+      const userData = new UserData({
+        fotosId:[],
+        owner:user.id
+     
+      });
+      await userData.save();
+     
+
+
+      const newUser = {
+        email,
+        password: hashedPassword,
+        firstName,
+        lastName,
+        admin: false,
+        allFotosIdListe:userData._id
+      }
+      console.log(newUser)
+
+      
+      User.findByIdAndUpdate(user.id,newUser, function (err, docs) {
+        if (err) {
+          console.log(err);
+        } else {
+        }
+      });
+
+  
+
 
       res.status(201).json({ message: "User wurde registriert", token });
     } catch (e) {
@@ -131,7 +165,7 @@ router.get("/user/loading", auth, async (req, res) => {
       firstName: user[0].firstName,
       lastName: user[0].lastName,
       admin: user[0].admin,
-      // myTestsListe: user[0].myTestsListe,
+      allFotosIdListe: user[0].allFotosIdListe,
     });
   } catch (e) {
     res.status(500).json({ message: "Ein Feler ist aufgetreten" });

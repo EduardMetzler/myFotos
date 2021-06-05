@@ -62,10 +62,11 @@ export const userLoaded = (
   firstName: String,
   lastName: String,
   admin: boolean,
+  allFotosIdListe:any
 
 ) => ({
   type: USER_LOADED,
-  payload: { firstName, lastName, admin },
+  payload: { firstName, lastName, admin, allFotosIdListe },
 });
 
 export const authError = () => ({

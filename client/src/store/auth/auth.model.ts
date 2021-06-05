@@ -5,6 +5,7 @@ export interface AuthStore {
     firstName: String;
     lastName: String;
     admin: boolean;
+    allFotosIdListe:String;
 
   }
   

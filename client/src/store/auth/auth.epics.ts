@@ -122,7 +122,7 @@ const epicUserLoading = (action$: any) =>
               responseData["firstName"],
               responseData["lastName"],
               responseData["admin"],
-            //   responseData["myTestsListe"]
+              responseData["allFotosIdListe"]
             ),
             // clearErrors(),
           ];
